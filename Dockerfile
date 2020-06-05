@@ -1,5 +1,14 @@
-FROM adoptopenjdk/openjdk11:x86_64-alpine-jre-11.0.7_10
+FROM adoptopenjdk/openjdk11:x86_64-alpine-jdk-11.0.7_10 AS BUILD
 
+RUN ["jlink", "--compress=2", \
+     "--add-modules", "java.base,java.logging,java.naming,java.desktop,java.management,java.security.jgss,java.instrument", \
+     "--output", "/jlinked"]
+
+FROM panga/alpine:3.8-glibc2.27
+
+COPY --from=build /jlinked /opt/java/
+
+ENV PATH=$PATH:/opt/java/bin
 ENV FLUIG_HOME "/opt/fluig/"
 
 WORKDIR ${FLUIG_HOME}
