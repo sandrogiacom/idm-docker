@@ -1,0 +1,19 @@
+FROM adoptopenjdk/openjdk11:x86_64-alpine-jdk-11.0.7_10-slim AS BUILD
+
+RUN ["jlink", "--compress=2", \
+     "--add-modules", "java.base", \
+     "--output", "/linked"]
+
+FROM alpine:latest
+COPY --from=build /linked /opt/jdk/
+
+ENV PATH=$PATH:/opt/jdk/bin
+ENV FLUIG_HOME "/opt/fluig/"
+
+WORKDIR ${FLUIG_HOME}
+
+ADD target/image-demo.jar "${FLUIG_HOME}"
+
+#ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -jar image-demo.jar" ]
+
+CMD ["java", "-jar image-demo.jar"]
