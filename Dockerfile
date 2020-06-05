@@ -1,4 +1,5 @@
-FROM adoptopenjdk/openjdk11:x86_64-alpine-jdk-11.0.7_10 AS BUILD
+#FROM adoptopenjdk/openjdk11:x86_64-alpine-jdk-11.0.7_10 AS BUILD
+FROM adoptopenjdk/openjdk11-openj9 AS BUILD
 
 RUN ["jlink", "--compress=2", \
      "--add-modules", "java.base,java.logging,java.naming,java.desktop,java.management,java.security.jgss,java.instrument", \
