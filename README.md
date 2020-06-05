@@ -18,4 +18,3 @@ Acesso:
 
 http://localhost:8081/hello
 
-jlink --compress=2 --add-modules java.base --output /jlinked
