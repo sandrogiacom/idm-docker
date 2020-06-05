@@ -1,10 +1,10 @@
-FROM openjdk:11.0.6-jre-slim
+FROM adoptopenjdk/openjdk11:x86_64-alpine-jre-11.0.7_10
 
 ENV FLUIG_HOME "/opt/fluig/"
 
 WORKDIR ${FLUIG_HOME}
 
-RUN groupadd -r fluig && useradd -r -g fluig fluig && \
+RUN addgroup -S fluig && adduser -S fluig -G fluig && \
    mkdir -p "${FLUIG_HOME}" && chown -R fluig:fluig "${FLUIG_HOME}"
 
 USER fluig
