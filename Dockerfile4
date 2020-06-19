@@ -1,4 +1,4 @@
-FROM adoptopenjdk:14.0.1_7-jdk-openj9-0.20.0 AS BUILD
+FROM adoptopenjdk:14.0.1_7-jre-openj9-0.20.0 AS BUILD
 
 RUN ["jlink", "--compress=2", \
      "--add-modules", "java.base,java.logging,java.naming,java.desktop,java.management,java.security.jgss,java.instrument", \
@@ -42,4 +42,6 @@ RUN addgroup -S fluig && adduser -S fluig -G fluig && \
 
 USER fluig
 
-CMD ["java", "-version"]
+ADD --chown=fluig:fluig target/image-demo.jar "${FLUIG_HOME}"
+
+ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -jar image-demo.jar" ]
