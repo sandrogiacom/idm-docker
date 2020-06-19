@@ -1,7 +1,7 @@
 FROM adoptopenjdk:14.0.1_7-jdk-openj9-0.20.0 AS BUILD
 
 RUN ["jlink", "--compress=2", \
-     "--add-modules", "java.base,java.logging,java.naming,java.desktop,java.management,java.security.jgss,java.instrument", \
+     "--add-modules", "java.base,java.logging,java.naming,java.desktop,java.management,java.security.jgss,java.instrument,jdk.unsupported,java.sql", \
      "--output", "/jlinked"]
 
 FROM alpine
