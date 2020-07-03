@@ -9,6 +9,6 @@ RUN addgroup -S fluig && adduser -S fluig -G fluig && \
 
 USER fluig
 
-ADD --chown=fluig:fluig target/image-demo.jar "${FLUIG_HOME}"
+ADD --chown=fluig:fluig target/idm-docker.jar "${FLUIG_HOME}"
 
-ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -jar image-demo.jar" ]
+ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -jar idm-docker.jar" ]

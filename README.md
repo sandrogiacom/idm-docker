@@ -4,11 +4,11 @@
 
 Build da Imagem:
 
-`docker build -t idm/idm-docker .`
+`build -t totvsidentity/idm-14-jre .`
 
 Run:
 
-`docker run --name idm-docker -p 8081:8080 idm/idm-docker:latest`
+`docker run --name idm-docker -p 8081:8080 totvsidentity/idm-14-jre:latest`
 
 Listando a imagem:
 

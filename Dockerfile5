@@ -1,7 +1,7 @@
-FROM adoptopenjdk:14.0.1_7-jre-openj9-0.20.0 AS BUILD
+FROM adoptopenjdk:14.0.1_7-jdk-openj9-0.20.0 AS BUILD
 
 RUN ["jlink", "--compress=2", \
-     "--add-modules", "java.base,java.logging,java.naming,java.desktop,java.management,java.security.jgss,java.instrument", \
+     "--add-modules", "java.base,java.logging,java.naming,java.desktop,java.management,java.security.jgss,java.instrument,jdk.unsupported,java.sql", \
      "--output", "/jlinked"]
 
 FROM alpine
@@ -42,6 +42,4 @@ RUN addgroup -S fluig && adduser -S fluig -G fluig && \
 
 USER fluig
 
-ADD --chown=fluig:fluig target/idm-docker.jar "${FLUIG_HOME}"
-
-ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -jar idm-docker.jar" ]
+CMD ["java", "-version"]

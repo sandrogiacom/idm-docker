@@ -12,8 +12,8 @@ ENV FLUIG_HOME "/opt/fluig/"
 
 WORKDIR ${FLUIG_HOME}
 
-ADD target/image-demo.jar "${FLUIG_HOME}"
+ADD target/idm-docker.jar "${FLUIG_HOME}"
 
-#ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -jar image-demo.jar" ]
+#ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -jar idm-docker.jar" ]
 
-CMD ["java", "-jar image-demo.jar"]
+CMD ["java", "-jar idm-docker.jar"]
